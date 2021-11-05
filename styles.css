@@ -25,7 +25,8 @@ body {
 .draw-polygon {
   width: 100px;
   height: 100px;
-  background-color: rgba(30, 80, 80, 0.7);
+  background-color: rgba(30, 80, 33, 0.7);
+  /* background-color: rgba(32, 204, 175, 0.8); */
   color: #eee;
 }
 

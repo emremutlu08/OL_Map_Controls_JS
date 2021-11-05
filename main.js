@@ -13,23 +13,34 @@ function init() {
 
   /** VECTORS */
 
+  // Styling of vector features
+  const pointVectorStyle = new ol.style.Style({
+    image: new ol.style.Circle({
+      radius: 6,
+      fill: new ol.style.Fill({ color: "red" }),
+    }),
+  });
+
   // create the source and layer for random features
   const pointVectorSource = new ol.source.Vector({});
 
   const pointVectorLayer = new ol.layer.Vector({
     source: pointVectorSource,
-    style: new ol.style.Style({
-      image: new ol.style.Circle({
-        radius: 6,
-        fill: new ol.style.Fill({ color: "red" }),
-      }),
-    }),
+    style: pointVectorStyle,
   });
 
   const polygonVectorSource = new ol.source.Vector({});
 
   const polygonVectorLayer = new ol.layer.Vector({
     source: polygonVectorSource,
+    style: new ol.style.Style({
+      fill: new ol.style.Fill({
+        color: "rgba(32, 204, 175, 0.8)",
+      }),
+      stroke: new ol.style.Stroke({
+        color: "rgba(21, 170, 28, 0.9)",
+      }),
+    }),
   });
 
   /** VECTORS - END */
