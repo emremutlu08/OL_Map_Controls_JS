@@ -131,10 +131,24 @@ function init() {
     clearMapControl,
   ];
 
+  /** turf.js kullanım örneği */
+  var geoJSONFormat = new ol.format.GeoJSON({});
+  var featuresT = turf.points([
+    [32.768611907958984, 39.89600785375332],
+    [32.7672815322876, 39.892748193859404],
+    [32.769126892089844, 39.88998230025583],
+    [32.77204513549805, 39.89409817282453],
+    [32.768611907958984, 39.89600785375332],
+  ]);
+
+  var centerT = turf.center(featuresT);
+  let center = geoJSONFormat.readFeature(centerT).getGeometry().flatCoordinates;
+  center = ol.proj.fromLonLat(center);
+
   // Haritayı oluşturuyoruz
   const map = new ol.Map({
     view: new ol.View({
-      center: [3901835.001223564, 4735426.77632324],
+      center,
       zoom: 6,
       minZoom: 2,
     }),
