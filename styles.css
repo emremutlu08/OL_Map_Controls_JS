@@ -12,6 +12,7 @@ body {
   width: 100vw;
 }
 
+/* DRAW TOOLS */
 .draw-tools {
   position: absolute;
   top: 50;
@@ -19,10 +20,19 @@ body {
   right: 10;
 }
 
+.clear-map,
 .draw-point,
 .draw-polygon {
   width: 100px;
   height: 100px;
   background-color: rgba(30, 80, 80, 0.7);
   color: #eee;
+}
+
+/* CLEAR TOOLS */
+.clear-map-container {
+  position: absolute;
+  bottom: 50;
+  left: unset;
+  right: 10;
 }
