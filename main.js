@@ -93,7 +93,7 @@ function init() {
         map.removeInteraction(interaction);
         // Butonun görüntüsünü eski haline getir
         element.innerHTML = "Open Draw " + element.name;
-        element.style.backgroundColor = "rgba(30, 80, 80, 0.7)";
+        element.style.backgroundColor = "rgba(30, 80, 33, 0.7)";
       }
     });
   };
