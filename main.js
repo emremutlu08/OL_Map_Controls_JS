@@ -171,7 +171,7 @@ function init() {
   });
 
   map.addInteraction(dragRotateInteraction);
-
+  //http://192.168.0.131:5001/geoserver/serbestbolge/wfs?
   // Draw Interaction
   const drawPolygonInteraction = new ol.interaction.Draw({
     type: "Polygon",
@@ -193,19 +193,6 @@ function init() {
   // WMS
   const atlasWMSLayer = new ol.layer.Tile({
     source: new ol.source.TileWMS({
-      url: "http://192.168.0.131:5001/geoserver/serbestbolge/wms?",
-      params: {
-        LAYERS: "serbestbolge:sb_parsel",
-        FORMAT: "image/png",
-      },
-    }),
-  });
-
-  map.addLayer(atlasWMSLayer);
-
-  // WFS
-  const atlasWFSLayer = new ol.layer.Tile({
-    source: new ol.source.TileWMS({
       url: "http://192.168.0.131:5001/geoserver/serbestbolge/wfs?",
       params: {
         LAYERS: "serbestbolge:sb_parsel",
@@ -214,18 +201,39 @@ function init() {
     }),
   });
 
-  // var atlasWFSLayer = new ol.Layer.Vector("Stavros Features", {
-  //   strategies: [new ol.Strategy.Fixed()],
-  //   projection: new ol.Projection("EPSG:4326"),
-  //   protocol: new ol.Protocol.WFS({
+  // map.addLayer(atlasWMSLayer);
+
+  // WFS
+  // const atlasWFSLayer = new ol.layer.Tile({
+  //   source: new ol.source.TileWMS({
   //     url: "http://192.168.0.131:5001/geoserver/serbestbolge/wfs?",
-  //     featureType: "parks", //geoserver Layer Name without workspace prefix
   //     params: {
   //       LAYERS: "serbestbolge:sb_parsel",
   //       FORMAT: "image/png",
   //     },
   //   }),
   // });
+
+  // var atlasWFSLayer = new ol.Layer.Vector("Stavros Features", {
+  //   strategies: [new ol.Strategy.Fixed()],
+  //   projection: new ol.Projection("EPSG:4326"),
+  //   protocol: new ol.Protocol.WFS({
+  //     url: "http://192.168.0.131:5001/geoserver/serbestbolge/wfs?",
+  //     featureType: "parks", //geoserver Layer Name without workspace prefix
+  // params: {
+  //   LAYERS: "serbestbolge:sb_parsel",
+  //   FORMAT: "image/png",
+  // },
+  //   }),
+  // });
+
+  const atlasWFSLayer = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      format: new ol.format.WFS({}),
+      url: "http://192.168.0.131:5001/geoserver/serbestbolge/wfs?service=WFS&version=1.0.0&request=GetFeature&typeName=serbestbolge:sb_parsel&maxFeatures=50",
+    }),
+  });
+  console.log(atlasWFSLayer, ":254");
 
   map.addLayer(atlasWFSLayer);
 }
